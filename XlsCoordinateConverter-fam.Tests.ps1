@@ -22,6 +22,12 @@ Describe 'Split Cell' {
         { SplitCell -Cell $cell } | Should -Throw
     }
 
+    It 'A String with a number supeior to 1048576' {
+        $cell = 'A1048577'
+
+        { SplitCell -Cell $cell} | Should -Throw
+    }
+
 }
 Describe 'String to table' {
     It 'The returned table is the same length as the String length' {
@@ -54,5 +60,12 @@ Describe 'Table to Row' {
         $result = NumberTableToRow -Table $table
 
         $result | Should -Be 2732
+    }
+
+    It 'A String after XFD is not valid' {
+        $cell = 'XFE'
+        $table = StringToNumberTable -String $cell
+
+        {NumberTableToRow -Table $table} | Should -Throw
     }
 }

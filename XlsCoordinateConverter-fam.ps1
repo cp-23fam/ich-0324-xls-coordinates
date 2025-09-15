@@ -19,6 +19,10 @@ function SplitCell {
     $letters = $Cell.Substring(0, $index)
     $numbers = [int]$Cell.Substring($index, $Cell.Length - $index)
 
+    if ($numbers -gt 1048576) {
+        throw "Limite de lignes dépassée (1'048'576)"
+    }
+
     return @($letters, $numbers)
 }
 
@@ -56,6 +60,10 @@ function NumberTableToRow {
         }
     }
 
+    if ($number -gt 16384) {
+        throw "Limite de colonnes dépassée (16'384 / XFD)"
+    }
+
     return $number
 }
 function ConvertFrom-XlsCoordinates {
@@ -74,10 +82,3 @@ function ConvertFrom-XlsCoordinates {
 
     return $Table
 }
-
-# Define Cell coordinates of start insertion
-[string] $grilleCelluleInsertion = 'D3'
-
-# Convert Cell coordinates from string to hashtable with Row and Column keys
-[hashtable] $grilleCoordinatesInsertion = ConvertFrom-XlsCoordinates -Cell $grilleCelluleInsertion
-Write-Host $grilleCoordinatesInsertion
