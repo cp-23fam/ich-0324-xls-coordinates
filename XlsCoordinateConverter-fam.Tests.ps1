@@ -69,3 +69,23 @@ Describe 'Table to Row' {
         {NumberTableToRow -Table $table} | Should -Throw
     }
 }
+
+Describe 'Total' {
+    It 'D3 converts to [4, 3]' {
+        $cell = 'D3'
+
+        [hashtable] $result = ConvertFrom-XlsCoordinates -Cell $cell
+
+        $result['Column'] | Should -Be 4
+        $result['Row'] | Should -Be 3
+    }
+
+    It 'AA51 converts to [27, 51]' {
+        $cell = 'AA51'
+
+        [hashtable] $result = ConvertFrom-XlsCoordinates -Cell $cell
+
+        $result['Column'] | Should -Be 27
+        $result['Row'] | Should -Be 51
+    }
+}
