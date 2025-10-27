@@ -25,7 +25,7 @@ Describe 'Split Cell' {
     It 'A String with a number supeior to 1048576' {
         $cell = 'A1048577'
 
-        { SplitCell -Cell $cell} | Should -Throw
+        { SplitCell -Cell $cell } | Should -Throw
     }
 
 }
@@ -66,7 +66,7 @@ Describe 'Table to Row' {
         $cell = 'XFE'
         $table = StringToNumberTable -String $cell
 
-        {NumberTableToRow -Table $table} | Should -Throw
+        { NumberTableToRow -Table $table } | Should -Throw
     }
 }
 
