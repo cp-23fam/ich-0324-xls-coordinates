@@ -1,3 +1,4 @@
 build/
 coverage.xml
 Analyser.log
+.env
