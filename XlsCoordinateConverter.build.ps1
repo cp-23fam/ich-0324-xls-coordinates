@@ -25,12 +25,12 @@ Task TestAndAnalyse {
 }
 
 Task Build {
-    If (!(Test-Path -Path './build')) {
-        New-Item './build' -ItemType Directory
+    If (!(Test-Path -Path './build/XlsCoordinateConverter-fam')) {
+        New-Item './build/XlsCoordinateConverter-fam' -ItemType Directory
     }
     
-    Copy-Item -Path './XlsCoordinateConverter.ps1' -Destination './build/XlsCoordinateConverter-fam.psm1' -Force
-    Add-Content -Path './build/XlsCoordinateConverter-fam.psm1' -Value 'Export-ModuleMember -Function ConvertFrom-XlsCoordinates'
+    Copy-Item -Path './XlsCoordinateConverter.ps1' -Destination './build/XlsCoordinateConverter-fam/XlsCoordinateConverter-fam.psm1' -Force
+    Add-Content -Path './build/XlsCoordinateConverter-fam/XlsCoordinateConverter-fam.psm1' -Value 'Export-ModuleMember -Function ConvertFrom-XlsCoordinates'
 }
 
 Task Release {
@@ -43,7 +43,7 @@ Task Release {
     }
     
     Update-ModuleManifest -Path './XlsCoordinateConverter.psd1' -ModuleVersion $New
-    Copy-Item -Path './XlsCoordinateConverter.psd1' -Destination './build/XlsCoordinateConverter-fam.psd1' -Force
+    Copy-Item -Path './XlsCoordinateConverter.psd1' -Destination './build/XlsCoordinateConverter-fam/XlsCoordinateConverter-fam.psd1' -Force
     Import-Module './build/XlsCoordinateConverter-fam'
 }
 
@@ -55,7 +55,7 @@ Task Publish {
 
     $APIKey = $Env:API_KEY
     Write-Host $APIKey
-    Publish-Module -Path './build' -NuGetApiKey $APIKey
+    Publish-Module -Path './build/XlsCoordinateConverter-fam' -NuGetApiKey $APIKey
 }
 
 Task . TestAndAnalyse, Build, Release
