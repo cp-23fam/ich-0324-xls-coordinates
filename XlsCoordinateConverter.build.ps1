@@ -30,7 +30,6 @@ Task Build {
     }
     
     Copy-Item -Path './XlsCoordinateConverter.ps1' -Destination './build/XlsCoordinateConverter-fam/XlsCoordinateConverter-fam.psm1' -Force
-    Add-Content -Path './build/XlsCoordinateConverter-fam/XlsCoordinateConverter-fam.psm1' -Value 'Export-ModuleMember -Function ConvertFrom-XlsCoordinates'
 }
 
 Task Release {
@@ -44,6 +43,7 @@ Task Release {
     
     Update-ModuleManifest -Path './XlsCoordinateConverter.psd1' -ModuleVersion $New
     Copy-Item -Path './XlsCoordinateConverter.psd1' -Destination './build/XlsCoordinateConverter-fam/XlsCoordinateConverter-fam.psd1' -Force
+    Update-ModuleManifest -Path './build/XlsCoordinateConverter-fam/XlsCoordinateConverter-fam.psd1' -RootModule 'XlsCoordinateConverter-fam.psm1'
     Import-Module './build/XlsCoordinateConverter-fam'
 }
 
