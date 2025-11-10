@@ -33,7 +33,9 @@ Task Build {
 }
 
 Task Release {
-    [Version] $ModuleVersion = (Get-Module -Name XlsCoordinateConverter-fam).Version
+    Install-Module XlsCoordinateConverter-fam -Force
+    [Version] $ModuleVersion = (Get-Module -ListAvailable | Where-Object -Property Name -eq XlsCoordinateConverter-fam).Version
+    Uninstall-Module XlsCoordinateConverter-fam -Force
 
     switch ($Version) {
         'Major' { $New = [Version]::new($ModuleVersion.Major + 1, 0, 0) }
@@ -44,7 +46,6 @@ Task Release {
     Update-ModuleManifest -Path './XlsCoordinateConverter.psd1' -ModuleVersion $New
     Copy-Item -Path './XlsCoordinateConverter.psd1' -Destination './build/XlsCoordinateConverter-fam/XlsCoordinateConverter-fam.psd1' -Force
     Update-ModuleManifest -Path './build/XlsCoordinateConverter-fam/XlsCoordinateConverter-fam.psd1' -RootModule 'XlsCoordinateConverter-fam.psm1'
-    Import-Module './build/XlsCoordinateConverter-fam'
 }
 
 Task Publish {
