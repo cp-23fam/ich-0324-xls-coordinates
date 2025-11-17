@@ -12,4 +12,5 @@ jobs:
     runs-on: [self-hosted]
 
     steps:
-      - run: Invoke-Build -Version None
+      - shell: pwsh
+        run: Invoke-Build -Version None
