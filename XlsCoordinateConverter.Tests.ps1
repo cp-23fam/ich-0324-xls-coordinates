@@ -71,6 +71,10 @@ Describe 'Table to Row' {
 }
 
 Describe 'Total' {
+    # BeforeEach {
+    #     Mock SplitCell { return ... }
+    # }
+
     It 'D3 converts to [4, 3]' {
         $cell = 'D3'
 
