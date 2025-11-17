@@ -41,6 +41,7 @@ Task Release {
         'Major' { $New = [Version]::new($ModuleVersion.Major + 1, 0, 0) }
         'Minor' { $New = [Version]::new($ModuleVersion.Major, $ModuleVersion.Minor + 1, 0) }
         'Patch' { $New = [Version]::new($ModuleVersion.Major, $ModuleVersion.Minor, $ModuleVersion.Build + 1) }
+        default { $New = $ModuleVersion }
     }
     
     Update-ModuleManifest -Path './XlsCoordinateConverter.psd1' -ModuleVersion $New

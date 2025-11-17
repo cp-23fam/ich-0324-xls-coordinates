@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: [self-hosted]
 
     steps:
-      - run: echo Hello World!
+      - run: Invoke-Build -Version None
