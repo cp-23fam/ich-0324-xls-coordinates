@@ -1,6 +1,6 @@
 # ich-0324-xls-coordinates
 
-[![CICD](https://github.com/cp-23fam/ich-0324-xls-coordinates/actions/workflows/blank.yml/badge.svg?branch=main)](https://github.com/cp-23fam/ich-0324-xls-coordinates/actions/workflows/release.yml)
+[![CICD](https://github.com/cp-23fam/ich-0324-xls-coordinates/actions/workflows/release.yml/badge.svg)](https://github.com/cp-23fam/ich-0324-xls-coordinates/actions/workflows/release.yml)
 
 ## Introduction
 
