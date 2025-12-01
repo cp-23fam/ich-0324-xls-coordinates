@@ -18,22 +18,13 @@ on:
         required: true
 
 jobs:
-  build:
+  build-and-publish:
     runs-on: [self-hosted]
 
     steps:
       - uses: actions/checkout@v4
-      - name: Build
-        shell: pwsh
-        run: Invoke-Build -Version ${{ github.event.inputs.build-type }}
-
-  publish:
-    runs-on: [self-hosted]
-
-    steps:
-      - uses: actions/checkout@v4
-      - name: Publish
+      - name: Build & Publish
         shell: pwsh
         env:
           API_KEY: ${{ secrets.API_KEY }}
-        run: Invoke-Build Publish
+        run: Invoke-Build -Version ${{ github.event.inputs.build-type }} && Invoke-Build Publish
