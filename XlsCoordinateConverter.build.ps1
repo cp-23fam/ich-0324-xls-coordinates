@@ -55,8 +55,8 @@ Task Publish {
             $name, $value = $_.split('=')
             set-content env:\$name $value
         }
-        $APIKey = $Env:API_KEY
     }
+    $APIKey = $env:API_KEY
 
     Write-Host $APIKey
     Publish-Module -Path './build/XlsCoordinateConverter-fam' -NuGetApiKey $APIKey
