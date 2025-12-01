@@ -50,9 +50,11 @@ Task Release {
 }
 
 Task Publish {
-    get-content .env | ForEach-Object {
-        $name, $value = $_.split('=')
-        set-content env:\$name $value
+    If (Test-Path -Path '.env') {
+        get-content .env | ForEach-Object {
+            $name, $value = $_.split('=')
+            set-content env:\$name $value
+        }
     }
 
     $APIKey = $Env:API_KEY
