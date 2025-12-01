@@ -56,10 +56,10 @@ Task Publish {
             set-content env:\$name $value
         }
     }
-    $APIKey = $env:API_KEY
 
-    Write-Host $APIKey
-    Publish-Module -Path './build/XlsCoordinateConverter-fam' -NuGetApiKey $APIKey
+    Get-ChildItem -Path Env:
+    
+    Publish-Module -Path './build/XlsCoordinateConverter-fam' -NuGetApiKey $env:API_KEY
 }
 
 Task . TestAndAnalyse, Build, Release
