@@ -26,5 +26,5 @@ jobs:
       - name: Build & Publish
         shell: pwsh
         env:
-          API_KEY: ${{ secrets.NuGet }}
+          API_KEY: ${{ secrets.API_KEY }}
         run: Invoke-Build -Version ${{ github.event.inputs.build-type }} && Invoke-Build Publish
